@@ -16,17 +16,17 @@
 
 ### 开通实时音视频服务
 
-#### 1. 申请开通实时音视频服务
+#### 申请开通实时音视频服务
 进入 [实时音视频管理控制台](https://console.qcloud.com/rav)，如果服务还没有开通，则会有如下提示:
 ![](https://main.qcloudimg.com/raw/989a89e702858048b5b6c945a371f75c.png)
 点击申请开通，之后会进入腾讯云人工审核阶段，审核通过后即可开通。
 
-#### 2. 创建实时音视频应用
+#### 创建实时音视频应用
 实时音视频开通后，进入[【实时音视频管理控制台】](https://console.qcloud.com/rav) 创建实时音视频应用 ：
 ![](https://main.qcloudimg.com/raw/20d0adeadf23251f857571a65a8dd569.png)
 点击【确定】按钮即可。
 
-#### 3. 获取实时音视频配置信息
+#### 获取实时音视频配置信息
 从实时音视频控制台获取`sdkAppID、accountType、privateKey`，后面配置服务器会用到：
 ![](https://main.qcloudimg.com/raw/9a5f341883f911cf9b65b9b5487f2f75.png)
 
@@ -85,9 +85,9 @@ Config.java中的配置修改好之后打成war包。
 
 ### nginx 配置
 如果您已经有**域名**以及域名对应的**SSL证书**存放在`/data/release/nginx/`目录下，请将下面配置内容中的
-[1] 替换成您自己的域名，
-[2-1]替换成SSL证书的crt文件名，
-[2-2]替换成SSL证书的key文件名。
+- [1] 替换成您自己的域名
+- [2-1] 替换成SSL证书的crt文件名
+- [2-2] 替换成SSL证书的key文件名
 
 ```
 upstream app_weapp {
