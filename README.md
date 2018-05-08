@@ -137,14 +137,20 @@ nginx -s reload
 建房为例，请求地址格式 https://您自己的域名/roomservice/weapp/webrtc_room/create_room
 
 ## 小程序和web端部署
+1.小程序部署
 
-下载[小程序](http://liteavsdk-1252463788.cosgz.myqcloud.com/xiaochengxu/RTCRoomRelease1.2.693.zip)和[web端](http://liteavsdk-1252463788.cosgz.myqcloud.com/windows/webRTCForChrome/WebRTC_20180428_093242.zip)的源码，分别修改代码中的后台地址
+下载 [小程序](https://github.com/TencentVideoCloudMLVBDev/RTCRoomDemo) 源码，将wxlite/config.js文件中的`webrtcServerUrl`修改成：
+```
+https://您自己的域名/webrtc/weapp/webrtc_room
+```
 
-小程序wxlite/config.js文件中的`webrtcServerUrl`修改成 *https://您自己的域名/webrtc/weapp/webrtc_room*
+2.web端部署
 
-web端component/WebRTCRoom.js文件中的`serverDomain`修改成 *https://您自己的域名/webrtc/weapp/webrtc_room*
-
+下载 [web端](https://github.com/TencentVideoCloudMLVBDev/webrtc_pc) 源码，将component/WebRTCRoom.js文件中的`serverDomain`修改成：
+```
+https://您自己的域名/webrtc/weapp/webrtc_room
+```
 
 ## 开发者资源
-* [项目结构](https://github.com/TencentVideoCloudMLVBDev/RTCRoomDemo/blob/master/doc/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84.md) - 后台源码结构
-* [协议文档](https://cloud.tencent.com/document/product/454/15364) - 后台协议文档
+* [项目结构](https://github.com/TencentVideoCloudMLVBDev/webrtc_server_java/blob/master/doc/codeStructure.md) - 后台源码结构
+* [协议文档](https://github.com/TencentVideoCloudMLVBDev/webrtc_server_java/blob/master/doc/protocol.md) - 后台协议文档
