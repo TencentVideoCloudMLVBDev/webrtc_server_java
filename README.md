@@ -1,38 +1,26 @@
-# 腾讯云音视频webrtc解决方案服务端
+# 腾讯云音视频 WebRTC 解决方案服务端
+当您测试体验完完 “WebRTC 互通”功能之后，想开发属于自己的“ WebRTC 互通”功能。这时需要部署属于自己账号体系的服务器。本文主要说明如何部署 WebRTC 服务器。
 
-在构建webrtc业务场景下，都需要后台配合完成诸如：
 
-- 管理房间列表和视频位
-- 生成userSig和privateMapKey，用于进入webrtc房间
+## 1 开通实时音视频服务
 
-以上这些都有一定的学习成本，为了**降低学习成本**，我们将后台封装了一套接口，来解决以上问题。再配合IOS，Android，小程序和Win PC端的后台调用封装。对应用开发者提供一套友好的接口，方便您实现webrtc多人实时音视频业务场景。
-
-**特别说明：**
-
-- [1] 后台没有对接口的调用做安全校验，这需要您结合您自己的账号和鉴权体系，诸如在请求接口上加一个Sig参数，内容是您账号鉴权体系派发的一个字符串，用于校验请求者的身份。
-- [2] 房间管理采用 java对象直接在内存中进行管理。房间信息动态和实效性，因此没有采用数据库做持久存储，而是在内存中动态管理。
-
-## 云服务开通
-
-### 开通实时音视频服务
-
-#### 申请开通实时音视频服务
+#### step1:  申请开通实时音视频服务
 进入 [实时音视频管理控制台](https://console.qcloud.com/rav)，如果服务还没有开通，则会有如下提示:
 ![](https://main.qcloudimg.com/raw/989a89e702858048b5b6c945a371f75c.png)
 点击申请开通，之后会进入腾讯云人工审核阶段，审核通过后即可开通。
 
-#### 创建实时音视频应用
+####  step2:  创建实时音视频应用
 实时音视频开通后，进入[【实时音视频管理控制台】](https://console.qcloud.com/rav) 创建实时音视频应用 ：
 ![](https://main.qcloudimg.com/raw/20d0adeadf23251f857571a65a8dd569.png)
-点击【确定】按钮即可。
+点击【**确定**】按钮即可。
 
-#### 获取实时音视频配置信息
+####  step3: 获取实时音视频配置信息
 从实时音视频控制台获取`sdkAppID、accountType、privateKey`，后面配置服务器会用到：
 ![](https://main.qcloudimg.com/raw/9a5f341883f911cf9b65b9b5487f2f75.png)
 
 
-## 修改配置信息
-后台使用spring框架搭建，开发环境是IntelliJ IDEA，java需要使用1.8。用IntelliJ IDEA导入工程源码，修改Config.java 中`sdkAppID、accountType、privateKey`等配置项。
+## 2 修改配置信息
+后台使用 spring 框架搭建，开发环境是 IntelliJ IDEA，**java 环境要求使用<font color='red'>1.8_52 或以上</font>**。用 IntelliJ IDEA 导入工程源码，修改`Config.java` 中`sdkAppID、accountType、privateKey`等配置项。
 
 ```java
 public class Config {
@@ -73,17 +61,40 @@ public class Config {
 }
 ```
 
-## 服务器部署
+## 3 服务器部署
 
-以CentOS 系统为例，描述部署过程。采用CentOS + nginx + Apache Tomcat + java 的 环境。小程序和IOS都要求服务器支持HTTPS请求。和远程服务器通讯一般走ssh连接，可以用工具Xshell，secureCRT连接服务器。对于小文件（小于100kB）可以用rz 命令从本机传送文件至服务器，以及sz命令从远程服务器下载文件。非常方便。
+以 CentOS 系统为例，描述部署过程。建议环境： CentOS + nginx + Apache Tomcat + java 。小程序和 IOS 都要求服务器支持 HTTPS 请求。
 
-### 准备发布包
-Config.java中的配置修改好之后打成war包。
+### 3.1 准备发布包
+修改好 Config.java 中的配置，然后选择 Build -> Build Artifacts 开始打包，打包完成后到输出路径拿到 webrtc.war 包。
+![](https://main.qcloudimg.com/raw/f50fb74b5e02e1ad6705e5854b56a096.png)
 
-### war包部署到服务器
-将打包好的roomservice.war包通过rz命令上传到服务器 tomcat 的 webapps 目录下。通过 tomcat/bin 目录下的 startup.sh 脚本启动 tomcat。 
+### 3.2 war包部署到服务器
 
-### nginx 配置
+#### 1) 新建 CVM 主机
+![](https://main.qcloudimg.com/raw/f677689d261e2e6741c3acf546d56b07.jpg)
+
+#### 2) 从服务市场选取镜像。
+![](https://main.qcloudimg.com/raw/7f1d7f00186cc7431164a06b9dfe6855.jpg)
+
+#### 3) 配置硬盘、网络、云主机访问密码，并且妥善保管好密码，然后设置安全组。
+![](https://main.qcloudimg.com/raw/e917c73c625f1e6850ad690b5dc71cef.jpg)
+
+#### 4) 查看/切换 JDK 版本。
+![](https://main.qcloudimg.com/raw/207f9ae83d29b7a33433863ef513c977.jpg)
+
+#### 5) 使用 FileZilla 连接云服务器
+因为需要上传文件到云服务器，建议使用 FileZilla 或者 FlashFXP 等可视化界面工具。
+![](https://main.qcloudimg.com/raw/45de9258ef540c64298f91ea30abe94a.png)
+
+#### 6）将打包好的 roomservice.war 包上传 tomcat 的 webapps 目录下
+![](https://main.qcloudimg.com/raw/2b061cd060fba68eeb00dcf9c3efc68d.png)
+
+#### 7) 通过 tomcat/bin 目录下的 startup.sh 脚本重新启动 tomcat。 
+![](https://main.qcloudimg.com/raw/6ac944f94bc328aaf7b878383997535e.png)
+
+
+### 3.3 nginx 配置
 如果您已经有**域名**以及域名对应的**SSL证书**存放在`/data/release/nginx/`目录下，请将下面配置内容中的
 - [1] 替换成您自己的域名
 - [2-1] 替换成SSL证书的crt文件名
@@ -118,7 +129,7 @@ server {
     ssl_session_cache         shared:SSL:50m;
     ssl_prefer_server_ciphers on;
 
-    # tomcat默认端口是8080，转发给tomcat处理
+    # tomcat默认端口是8080，nginx 将请求转发给tomcat处理
     location / {
         proxy_pass   http://127.0.0.1:8080;
         proxy_redirect  off;
@@ -128,29 +139,30 @@ server {
 }
 ```
 
-### 运行服务
+### 3.4 运行服务
 输入命令，启动Nginx服务。
 ```
 nginx -s reload
 ```
-通过Postman访问接口，就可以看到返回的json数据了。注意要按照接口定义正确填写body。
-建房为例，请求地址格式 https://您自己的域名/roomservice/weapp/webrtc_room/create_room
+使用 Postman 通过 POST 方式访问接口，如果在返回的 json 数据带有**请求成功**字样，说明部署成功。
+以获取登录信息为例，请求地址是 https://您自己的域名/webrtc/weapp/webrtc_room/get_login_info
+![](https://main.qcloudimg.com/raw/dc3643d482d566d79bce0170985a4586.png)
 
-## 小程序和web端部署
-1.小程序部署
+## 4 小程序和web端部署
+### 4.1 小程序部署
 
 下载 [小程序](https://github.com/TencentVideoCloudMLVBDev/RTCRoomDemo) 源码，将wxlite/config.js文件中的`webrtcServerUrl`修改成：
 ```
 https://您自己的域名/webrtc/weapp/webrtc_room
 ```
 
-2.web端部署
+### 4.2 web端部署
 
 下载 [web端](https://github.com/TencentVideoCloudMLVBDev/webrtc_pc) 源码，将component/WebRTCRoom.js文件中的`serverDomain`修改成：
 ```
 https://您自己的域名/webrtc/weapp/webrtc_room
 ```
 
-## 开发者资源
+## 5 开发者资源
 * [项目结构](https://github.com/TencentVideoCloudMLVBDev/webrtc_server_java/blob/master/doc/codeStructure.md) - 后台源码结构
 * [协议文档](https://github.com/TencentVideoCloudMLVBDev/webrtc_server_java/blob/master/doc/protocol.md) - 后台协议文档
