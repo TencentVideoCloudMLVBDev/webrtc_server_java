@@ -91,6 +91,7 @@ public class WebRTCRoomMgr  implements InitializingBean {
         webRTCRoom.setRoomID(roomID);
         webRTCRoom.setRoomInfo(roomInfo);
         webRTCRoom.addMember(userID, nickName);
+        webRTCRoom.setRoomCreator(userID);
         log.info("creatRoom roomID: " + roomID + ", userID: " + userID + ", nickName: " + nickName);
         webRTCRoomMap.put(roomID, webRTCRoom);
     }
@@ -144,6 +145,10 @@ public class WebRTCRoomMgr  implements InitializingBean {
         if (webRTCRoom != null) {
             webRTCRoom.delMember(userID);
             log.info("delMember roomID: " + roomID + ", userID: " + userID);
+
+            if (webRTCRoom.getMembersCnt() == 0) {
+                webRTCRoomMap.remove(roomID);
+            }
         }
     }
 

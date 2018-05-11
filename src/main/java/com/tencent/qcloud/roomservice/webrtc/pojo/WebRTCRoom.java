@@ -7,6 +7,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class WebRTCRoom {
     private String roomID = "";
+    private String roomCreator = "";
     private String roomInfo = "";
     private ConcurrentHashMap<String, Member> membersMap = new ConcurrentHashMap<>();
 
@@ -68,5 +69,13 @@ public class WebRTCRoom {
 
     public void delMember(String userID) {
         this.membersMap.remove(userID);
+    }
+
+    public String getRoomCreator() {
+        return roomCreator;
+    }
+
+    public void setRoomCreator(String roomCreator) {
+        this.roomCreator = roomCreator;
     }
 }

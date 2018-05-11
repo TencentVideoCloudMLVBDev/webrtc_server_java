@@ -29,7 +29,7 @@ public class IMMgr {
         WebRTCSigApi api = new WebRTCSigApi();
         api.setSdkAppid((int) Config.iLive.sdkAppID);
         api.setPrivateKey(Config.iLive.privateKey);
-        String userSig = api.genUserSig(userID, 30 * 60);
+        String userSig = api.genUserSig(userID, 60 * 60);
 
         rsp.setCode(0);
         rsp.setMessage("请求成功");
@@ -53,7 +53,7 @@ public class IMMgr {
         api.setSdkAppid((int) Config.iLive.sdkAppID);
         api.setPrivateKey(Config.iLive.privateKey);
 
-        String privMapEncrypt = api.genPrivMapEncrypt(userID, Integer.parseInt(roomID), 30 * 60);
+        String privMapEncrypt = api.genPrivMapEncrypt(userID, Integer.parseInt(roomID), 60 * 60);
 
         return privMapEncrypt;
     }
