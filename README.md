@@ -6,17 +6,17 @@
 
 #### step1:  申请开通实时音视频服务
 进入 [实时音视频管理控制台](https://console.qcloud.com/rav)，如果服务还没有开通，则会有如下提示:
-![](https://main.qcloudimg.com/raw/989a89e702858048b5b6c945a371f75c.png)
+![](https://github.com/TencentVideoCloudMLVBDev/webrtc_server_java/raw/master/image/rav_open.png)
 点击申请开通，之后会进入腾讯云人工审核阶段，审核通过后即可开通。
 
 ####  step2:  创建实时音视频应用
 实时音视频开通后，进入[【实时音视频管理控制台】](https://console.qcloud.com/rav) 创建实时音视频应用 ：
-![](https://main.qcloudimg.com/raw/20d0adeadf23251f857571a65a8dd569.png)
+![](https://github.com/TencentVideoCloudMLVBDev/webrtc_server_java/raw/master/image/rav_new.png)
 点击【**确定**】按钮即可。
 
 ####  step3: 获取实时音视频配置信息
 从实时音视频控制台获取`sdkAppID、accountType、privateKey`，后面配置服务器会用到：
-![](https://main.qcloudimg.com/raw/9a5f341883f911cf9b65b9b5487f2f75.png)
+![](https://github.com/TencentVideoCloudMLVBDev/webrtc_server_java/raw/master/image/rav_config.png)
 
 
 ## 2 修改配置信息
@@ -67,31 +67,32 @@ public class Config {
 
 ### 3.1 准备发布包
 修改好 Config.java 中的配置，然后选择 Build -> Build Artifacts 开始打包，打包完成后到输出路径拿到 webrtc.war 包。
-![](https://main.qcloudimg.com/raw/f50fb74b5e02e1ad6705e5854b56a096.png)
+
+![](https://github.com/TencentVideoCloudMLVBDev/webrtc_server_java/raw/master/image/build_war.png)
 
 ### 3.2 war包部署到服务器
 
 #### 1) 新建 CVM 主机
-![](https://main.qcloudimg.com/raw/f677689d261e2e6741c3acf546d56b07.jpg)
+![](https://github.com/TencentVideoCloudMLVBDev/webrtc_server_java/raw/master/image/new_cvm.png)
 
 #### 2) 从服务市场选取镜像。
-![](https://main.qcloudimg.com/raw/7f1d7f00186cc7431164a06b9dfe6855.jpg)
+![](https://github.com/TencentVideoCloudMLVBDev/webrtc_server_java/raw/master/image/cvm_image.png)
 
 #### 3) 配置硬盘、网络、云主机访问密码，并且妥善保管好密码，然后设置安全组。
-![](https://main.qcloudimg.com/raw/e917c73c625f1e6850ad690b5dc71cef.jpg)
+![](https://github.com/TencentVideoCloudMLVBDev/webrtc_server_java/raw/master/image/config_cvm.png)
 
 #### 4) 查看/切换 JDK 版本。
-![](https://main.qcloudimg.com/raw/207f9ae83d29b7a33433863ef513c977.jpg)
+![](https://github.com/TencentVideoCloudMLVBDev/webrtc_server_java/raw/master/image/change_jdk.png)
 
 #### 5) 使用 FileZilla 连接云服务器
 因为需要上传文件到云服务器，建议使用 FileZilla 或者 FlashFXP 等可视化界面工具。
-![](https://main.qcloudimg.com/raw/45de9258ef540c64298f91ea30abe94a.png)
+![](https://github.com/TencentVideoCloudMLVBDev/webrtc_server_java/raw/master/image/upload_war.png)
 
-#### 6）将打包好的 roomservice.war 包上传 tomcat 的 webapps 目录下
-![](https://main.qcloudimg.com/raw/2b061cd060fba68eeb00dcf9c3efc68d.png)
+#### 6）将打包好的 webrtc.war 包上传 tomcat 的 webapps 目录下
+![](https://github.com/TencentVideoCloudMLVBDev/webrtc_server_java/raw/master/image/upload_war_2.png)
 
 #### 7) 通过 tomcat/bin 目录下的 startup.sh 脚本重新启动 tomcat。 
-![](https://main.qcloudimg.com/raw/6ac944f94bc328aaf7b878383997535e.png)
+![](https://github.com/TencentVideoCloudMLVBDev/webrtc_server_java/raw/master/image/restart_tomcat.png)
 
 
 ### 3.3 nginx 配置
@@ -146,7 +147,7 @@ nginx -s reload
 ```
 使用 Postman 通过 POST 方式访问接口，如果在返回的 json 数据带有**请求成功**字样，说明部署成功。
 以获取登录信息为例，请求地址是 https://您自己的域名/webrtc/weapp/webrtc_room/get_login_info
-![](https://main.qcloudimg.com/raw/dc3643d482d566d79bce0170985a4586.png)
+![](https://github.com/TencentVideoCloudMLVBDev/webrtc_server_java/raw/master/image/postman.png)
 
 ## 4 小程序和web端部署
 ### 4.1 小程序部署
