@@ -20,7 +20,7 @@
 
 
 ## 2 修改配置信息
-后台使用 spring 框架搭建，开发环境是 IntelliJ IDEA，**java 环境要求使用<font color='red'>1.8_52 或以上</font>**。用 IntelliJ IDEA 导入工程源码，修改`Config.java` 中`sdkAppID、accountType、privateKey`等配置项。
+后台使用 spring 框架搭建，开发环境是 IntelliJ IDEA，**java 环境要求使用<font color='red'>1.8_52 或以上</font>**。用 IntelliJ IDEA 导入工程源码，修改`\src\main\java\com\tencent\qcloud\roomservice\webrtc\common\Config.java` 中`sdkAppID、accountType、privateKey`等配置项。
 
 ```java
 public class Config {
