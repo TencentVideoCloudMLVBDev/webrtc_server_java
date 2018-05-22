@@ -30,6 +30,7 @@ public class WebRTCRoomServiceImpl implements WebRTCRoomService {
         String userID = req.getUserID();
         String nickName = req.getNickName();
         String roomInfo = req.getRoomInfo();
+        String roomType = req.getRoomType();
 
         if (userID == null || userID.length() == 0 || roomInfo == null || roomInfo.length() == 0) {
             rsp.setCode(2);
@@ -50,10 +51,10 @@ public class WebRTCRoomServiceImpl implements WebRTCRoomService {
             return rsp;
         }
 
-        String roomID = String.valueOf(System.currentTimeMillis()/ 1000);
+        String roomID = String.valueOf(Math.abs((int)(System.currentTimeMillis())));
         // 获取一个可用的roomid
         while (webRTCRoomMgr.isRoomExist(roomID)) {
-            roomID = String.valueOf(System.currentTimeMillis() / 1000);
+            roomID = String.valueOf(Math.abs((int)(System.currentTimeMillis())));
         }
 
         //先获取权限位
@@ -66,7 +67,7 @@ public class WebRTCRoomServiceImpl implements WebRTCRoomService {
         }
 
         // 再创建房间
-        webRTCRoomMgr.creatRoom(roomID, userID, nickName, roomInfo);
+        webRTCRoomMgr.creatRoom(roomID, userID, nickName, roomInfo, roomType);
         rsp.setUserID(userID);
         rsp.setRoomID(roomID);
         rsp.setRoomInfo(roomInfo);
@@ -175,7 +176,7 @@ public class WebRTCRoomServiceImpl implements WebRTCRoomService {
     @Override
     public GetRoomListRsp getRoomList(GetRoomListReq req) {
         GetRoomListRsp rsp = new GetRoomListRsp();
-        rsp.setRooms(webRTCRoomMgr.getList(req.getCount(), req.getIndex()));
+        rsp.setRooms(webRTCRoomMgr.getList(req.getCount(), req.getIndex(), req.getRoomType()));
         return rsp;
     }
 

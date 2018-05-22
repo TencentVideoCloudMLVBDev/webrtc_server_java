@@ -9,6 +9,7 @@ public class WebRTCRoom {
     private String roomID = "";
     private String roomCreator = "";
     private String roomInfo = "";
+    private String roomType = ""; //房间类型，可以为空
     private ConcurrentHashMap<String, Member> membersMap = new ConcurrentHashMap<>();
 
     public String getRoomID() {
@@ -77,5 +78,14 @@ public class WebRTCRoom {
 
     public void setRoomCreator(String roomCreator) {
         this.roomCreator = roomCreator;
+    }
+
+    @JsonIgnore
+    public String getRoomType() {
+        return roomType;
+    }
+
+    public void setRoomType(String roomType) {
+        this.roomType = roomType;
     }
 }

@@ -54,7 +54,7 @@ public class WebRTCRoomMgr  implements InitializingBean {
     /**
      * 获取房间列表
      */
-    public ArrayList<WebRTCRoom> getList(int cnt, int index) {
+    public ArrayList<WebRTCRoom> getList(int cnt, int index, String roomType) {
         ArrayList<WebRTCRoom> resultList = new ArrayList<>();
         int cursor = 0;
         int roomCnt = 0;
@@ -64,7 +64,11 @@ public class WebRTCRoomMgr  implements InitializingBean {
             if (roomCnt >= cnt)
                 break;
 
-            log.info("getRoomList roomID: " + value.getRoomID() + ", members count: " + value.getMembersCnt());
+            if (!value.getRoomType().equals(roomType)) {
+                continue;
+            }
+
+            log.info("getRoomList roomID: " + value.getRoomID() + ", members count: " + value.getMembersCnt() + ", members list : " + value.getMembers() + ", roomType: " + roomType);
 
             if (value.getMembersCnt() != 0) {
                 if (cursor >= index) {
@@ -86,13 +90,14 @@ public class WebRTCRoomMgr  implements InitializingBean {
     /**
      * 创建房间
      */
-    public void creatRoom(String roomID, String userID, String nickName, String roomInfo) {
+    public void creatRoom(String roomID, String userID, String nickName, String roomInfo, String roomType) {
         WebRTCRoom webRTCRoom = new WebRTCRoom();
         webRTCRoom.setRoomID(roomID);
         webRTCRoom.setRoomInfo(roomInfo);
         webRTCRoom.addMember(userID, nickName);
         webRTCRoom.setRoomCreator(userID);
-        log.info("creatRoom roomID: " + roomID + ", userID: " + userID + ", nickName: " + nickName);
+        webRTCRoom.setRoomType(roomType);
+        log.info("creatRoom roomID: " + roomID + ", userID: " + userID + ", nickName: " + nickName + ", roomType: " + roomType);
         webRTCRoomMap.put(roomID, webRTCRoom);
     }
 

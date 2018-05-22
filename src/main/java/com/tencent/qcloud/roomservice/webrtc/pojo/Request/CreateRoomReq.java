@@ -4,6 +4,7 @@ public class CreateRoomReq {
     private String userID = "";
     private String nickName = ""; //用户昵称
     private String roomInfo = "";
+    private String roomType = ""; //房间类型，可以为空
 
     public String getUserID() {
         return userID;
@@ -27,5 +28,13 @@ public class CreateRoomReq {
 
     public void setNickName(String nickName) {
         this.nickName = nickName;
+    }
+
+    public String getRoomType() {
+        return roomType;
+    }
+
+    public void setRoomType(String roomType) {
+        this.roomType = roomType;
     }
 }

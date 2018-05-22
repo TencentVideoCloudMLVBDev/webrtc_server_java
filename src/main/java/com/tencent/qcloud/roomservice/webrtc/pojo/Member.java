@@ -31,4 +31,9 @@ public class Member {
     public void setTimeStamp(long timeStamp) {
         this.timeStamp = timeStamp;
     }
+
+    @Override
+    public String toString() {
+        return "userID=" + userID + ", nickName=" + nickName + ", timeStamp=" + timeStamp;
+    }
 }
