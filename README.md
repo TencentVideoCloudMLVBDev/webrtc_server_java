@@ -167,3 +167,4 @@ https://您自己的域名/webrtc/weapp/webrtc_room
 ## 5 开发者资源
 * [项目结构](https://github.com/TencentVideoCloudMLVBDev/webrtc_server_java/blob/master/doc/codeStructure.md) - 后台源码结构
 * [协议文档](https://github.com/TencentVideoCloudMLVBDev/webrtc_server_java/blob/master/doc/protocol.md) - 后台协议文档
+* [常见错误码](https://github.com/TencentVideoCloudMLVBDev/webrtc_server_java/blob/master/doc/errorCode.md) - 错误码文档
