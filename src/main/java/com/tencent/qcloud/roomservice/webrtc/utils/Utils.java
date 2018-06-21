@@ -14,11 +14,22 @@ public class Utils {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
             md.update(str.getBytes());
-            return new BigInteger(1, md.digest()).toString(16);
+            return byteArrayToHex(md.digest());
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
         return "";
+    }
+
+    public static String byteArrayToHex(byte[] byteArray) {
+        char[] hexDigits = {'0','1','2','3','4','5','6','7','8','9', 'a','b','c','d','e','f' };
+        char[] resultCharArray =new char[byteArray.length * 2];
+        int index = 0;
+        for (byte b : byteArray) {
+            resultCharArray[index++] = hexDigits[b>>>4 & 0xf];
+            resultCharArray[index++] = hexDigits[b & 0xf];
+        }
+        return new String(resultCharArray);
     }
 
     public static String S4 () {
