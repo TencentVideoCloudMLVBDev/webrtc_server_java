@@ -66,6 +66,11 @@ public class Config {
 以 CentOS 系统为例，描述部署过程。建议环境： CentOS + nginx + Apache Tomcat + java 。小程序和 IOS 都要求服务器支持 HTTPS 请求。
 
 ### 3.1 准备发布包
+首先到 [IntelliJ IDEA 官网](https://www.jetbrains.com/idea/download/#section=windows) 下载  IntelliJ IDEA 工具，注意这里要选择 <font color='red'>Ultimate 版 </font>。因为只有 Ultimate 版本才拥有Java EE 相关插件以及功能。
+![](https://main.qcloudimg.com/raw/3cad5d08eb48255e39fcd304aa7c97e6.png)
+
+成功安装 IntelliJ IDEA，接着配置按照第 2 步讲述， 修改下配置信息。
+
 修改好 Config.java 中的配置，然后选择 Build -> Build Artifacts 开始打包，打包完成后到输出路径拿到 webrtc.war 包。
 
 ![](https://github.com/TencentVideoCloudMLVBDev/webrtc_server_java/raw/master/image/build_war.png)
