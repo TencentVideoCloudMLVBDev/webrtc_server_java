@@ -88,7 +88,8 @@ public class Config {
 
 #### 4) 查看/切换 JDK 版本。
 ![](https://github.com/TencentVideoCloudMLVBDev/webrtc_server_java/raw/master/image/change_jdk_1.png)
-(https://github.com/TencentVideoCloudMLVBDev/webrtc_server_java/raw/master/image/change_jdk_2.png)
+
+![](https://github.com/TencentVideoCloudMLVBDev/webrtc_server_java/raw/master/image/change_jdk_2.png)
 
 #### 5) 使用 FileZilla 连接云服务器
 因为需要上传文件到云服务器，建议使用 FileZilla 或者 FlashFXP 等可视化界面工具。
