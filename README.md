@@ -153,8 +153,11 @@ server {
 nginx -s reload
 ```
 使用 Postman 通过 POST 方式访问接口，如果在返回的 json 数据带有**请求成功**字样，说明部署成功。
-以获取登录信息为例，请求地址是 https://您自己的域名/webrtc/weapp/webrtc_room/get_login_info
+以获取登录信息为例，请求地址是` https://您自己的域名/webrtc/weapp/webrtc_room/get_login_info`
 ![](https://github.com/TencentVideoCloudMLVBDev/webrtc_server_java/raw/master/image/postman.png)
+
+如果你是本地测试，请求地址则是：`http://127.0.0.1:8080/weapp/webrtc_room/get_login_info`
+![](https://github.com/TencentVideoCloudMLVBDev/webrtc_server_java/raw/master/image/postman2.png)
 
 ## 4 小程序和web端部署
 ### 4.1 小程序部署
