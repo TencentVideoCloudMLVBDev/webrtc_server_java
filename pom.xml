@@ -14,7 +14,7 @@
         <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
 
         <!--定义版本信息参数，提供下面引入-->
-        <org.spring.version>4.0.0.RELEASE</org.spring.version>
+        <org.spring.version>5.2.20.RELEASE</org.spring.version>
         <org.mybatis.version>3.4.1</org.mybatis.version>
         <org.mybatis.spring.version>1.3.0</org.mybatis.spring.version>
     </properties>
